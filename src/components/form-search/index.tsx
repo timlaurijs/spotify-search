@@ -36,7 +36,7 @@ export const FormSearch = () => {
   }, [debouncedQuery, router]);
 
   return (
-    <div className="min-w-[33vw] flex justify-center items-center ">
+    <div className="min-w-[33vw] flex justify-center items-center m-8">
       <form className="w-full max-w-lg bg-white p-8 rounded-lg shadow-md">
         <label className="block text-sm font-medium text-gray-700 mb-2">
           Search Spotify

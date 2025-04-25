@@ -1,5 +1,6 @@
 import { FormSearch } from "components/form-search";
 import { cachedSearchSpotify } from "service/spotify";
+import { SearchResults } from "components/search-results";
 
 interface Props {
   searchParams: Promise<{
@@ -14,8 +15,33 @@ export default async function Home({ searchParams }: Props) {
   console.log("results", results);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold text-blue-600 mb-6">HHR</h1>
+    <div className=" flex flex-col items-center justify-center m-40">
+      <h1
+        className="text-4xl font-bold text-blue-600 mb-6"
+        style={{ fontFamily: "'arial narrow'" }}
+      >
+        <span
+          className="text-yellow-500"
+          style={{ fontFamily: "'Old English Text MT', 'Gothic', serif" }}
+        >
+          H
+        </span>
+        out
+        <span
+          className="text-yellow-500"
+          style={{ fontFamily: "'Old English Text MT', 'Gothic', serif" }}
+        >
+          H
+        </span>
+        aven
+        <span
+          className="text-yellow-500"
+          style={{ fontFamily: "'Old English Text MT', 'Gothic', serif" }}
+        >
+          R
+        </span>
+        ecords
+      </h1>
       <FormSearch />
     </div>
   );
