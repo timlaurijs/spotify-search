@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useDebounceValue } from "usehooks-ts";
+import { useSpeechToText } from "../../hooks/use-speech-to-text";
 
 enum FormFieldNamed {
   QUERY = "q",
@@ -16,8 +17,9 @@ export const FormSearch = () => {
   const router = useRouter();
   const searchParams = useSearchParams(); // Access query parameters
   const currentQuery = searchParams.get(FormFieldNamed.QUERY) || "";
+  const { transcript, startListening, listening } = useSpeechToText();
 
-  const { register, watch } = useForm<FormValues>({
+  const { register, watch, setValue } = useForm<FormValues>({
     mode: "onBlur",
     defaultValues: {
       [FormFieldNamed.QUERY]: currentQuery,
@@ -38,18 +40,40 @@ export const FormSearch = () => {
     }
   }, [debouncedQuery, router]);
 
+  useEffect(() => {
+    if (currentQuery !== queryValue) {
+      setValue(FormFieldNamed.QUERY, currentQuery);
+    }
+  }, [currentQuery]);
+
+  useEffect(() => {
+    if (transcript) {
+      setValue(FormFieldNamed.QUERY, transcript);
+    }
+  }, [transcript]);
+
   return (
-    <div className="min-w-[33vw] flex justify-center items-center m-8">
-      <form className="w-full max-w-lg bg-white p-8 rounded-lg shadow-md">
+    <div className="min-w-[50vw] flex justify-center items-center m-8">
+      <form className="w-full bg-white p-8 rounded-lg shadow-md">
         <label className="block text-sm font-medium text-gray-700 mb-2">
           Search Spotify
         </label>
-        <input
-          type="text"
-          {...register(FormFieldNamed.QUERY, { required: true })}
-          placeholder="Search spotify..."
-          className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-        />
+        <div className="flex ">
+          <input
+            type="text"
+            {...register(FormFieldNamed.QUERY, { required: true })}
+            placeholder="Search spotify..."
+            className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          />
+          <button
+            type="button"
+            onClick={startListening}
+            style={{ color: "red" }}
+            className=" pl-6 text-5xl"
+          >
+            {listening ? "◎" : "◉"}
+          </button>
+        </div>
       </form>
     </div>
   );

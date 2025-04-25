@@ -12,7 +12,7 @@ export default async function Home({ searchParams }: Props) {
   const results = resolvedSearchParams?.q
     ? await cachedSearchSpotify(resolvedSearchParams.q)
     : null;
-  console.log("results", results);
+  // console.log("results", results);
 
   return (
     <div className=" flex flex-col items-center justify-center m-40">

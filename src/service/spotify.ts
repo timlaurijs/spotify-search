@@ -35,7 +35,7 @@ export const searchSpotify = async (
 ): Promise<SpotifyApi.SearchResponse> => {
   try {
     const token = await getSpotifyToken();
-    console.log("Fetching Spotify search results for query:", query);
+    // console.log("Fetching Spotify search results for query:", query);
 
     const res = await fetch(
       `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=track,artist,album&limit=10`,
@@ -66,7 +66,7 @@ export async function cachedSearchSpotify(query: string) {
 
     // Check if the query is already cached
     if (cachedSearchResults[key]) {
-      console.log("Cache hit for query:", key);
+      // console.log("Cache hit for query:", key);
       return cachedSearchResults[key];
     }
 
@@ -81,7 +81,7 @@ export async function cachedSearchSpotify(query: string) {
       artists: mappedResults.artists,
     };
 
-    console.log("Updated cachedSearchResults:", cachedSearchResults);
+    // console.log("Updated cachedSearchResults:", cachedSearchResults);
 
     return cachedSearchResults[key];
   } catch (error) {
