@@ -19,6 +19,9 @@ export const FormSearch = () => {
 
   const { register, watch } = useForm<FormValues>({
     mode: "onBlur",
+    defaultValues: {
+      [FormFieldNamed.QUERY]: currentQuery,
+    },
   });
 
   const queryValue = watch(FormFieldNamed.QUERY);
@@ -30,7 +33,7 @@ export const FormSearch = () => {
       router.push(`?q=${encodeURIComponent(debouncedQuery)}`);
     }
     // clear query value
-    if (!debouncedQuery && !currentQuery) {
+    if (!debouncedQuery) {
       router.push("?q=");
     }
   }, [debouncedQuery, router]);
