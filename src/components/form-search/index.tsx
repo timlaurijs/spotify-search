@@ -53,7 +53,7 @@ export const FormSearch = () => {
   }, [transcript]);
 
   return (
-    <div className="min-w-[50vw] flex justify-center items-center m-8">
+    <div className="min-w-[50vw] flex justify-center items-center my-8">
       <form className="w-full bg-white p-8 rounded-lg shadow-md">
         <label className="block text-sm font-medium text-gray-700 mb-2">
           Search Spotify
