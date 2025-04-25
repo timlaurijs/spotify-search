@@ -12,9 +12,10 @@ export default async function Home({ searchParams }: Props) {
     ? await cachedSearchSpotify(resolvedSearchParams.q)
     : null;
   console.log("results", results);
+
   return (
-    <div>
-      <h1>HHR</h1>
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
+      <h1 className="text-4xl font-bold text-blue-600 mb-6">HHR</h1>
       <FormSearch />
     </div>
   );

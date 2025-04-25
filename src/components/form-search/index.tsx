@@ -36,12 +36,16 @@ export const FormSearch = () => {
   }, [debouncedQuery, router]);
 
   return (
-    <div>
-      <form>
+    <div className="min-w-[33vw] flex justify-center items-center ">
+      <form className="w-full max-w-lg bg-white p-8 rounded-lg shadow-md">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Search Spotify
+        </label>
         <input
           type="text"
           {...register(FormFieldNamed.QUERY, { required: true })}
           placeholder="Search spotify..."
+          className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         />
       </form>
     </div>
