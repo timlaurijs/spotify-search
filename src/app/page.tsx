@@ -43,6 +43,7 @@ export default async function Home({ searchParams }: Props) {
         ecords
       </h1>
       <FormSearch />
+      <SearchResults results={results} />
     </div>
   );
 }
