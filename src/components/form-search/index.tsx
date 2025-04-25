@@ -30,7 +30,7 @@ export const FormSearch = () => {
   // set query in params
   useEffect(() => {
     if (debouncedQuery) {
-      router.push(`?q=${encodeURIComponent(debouncedQuery)}`);
+      router.push(`?q=${encodeURIComponent(debouncedQuery.trim())}`);
     }
     // clear query value
     if (!debouncedQuery) {
