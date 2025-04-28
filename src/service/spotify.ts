@@ -75,11 +75,7 @@ export async function cachedSearchSpotify(query: string) {
     const mappedResults = mapSpotifySearchResults(results);
 
     // Cache the results
-    cachedSearchResults[key] = {
-      albums: mappedResults.albums,
-      tracks: mappedResults.tracks,
-      artists: mappedResults.artists,
-    };
+    cachedSearchResults[key] = mappedResults;
 
     // console.log("Updated cachedSearchResults:", cachedSearchResults);
 
