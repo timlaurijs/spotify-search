@@ -29,8 +29,6 @@ export function useSpeechToText() {
       setListening(false);
     };
 
-    // console.log("recognition", recognition);
-
     recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
       console.error("Speech recognition error:", event.error);
       setListening(false);
