@@ -1,16 +1,12 @@
-// @flow
 import * as React from "react";
-import { SpotifySearchResults } from "service/types";
+import { Suspense } from "react";
 import { ArtistCard } from "components/artist-card";
 import { AlbumCard } from "components/album-card";
 import { TrackCard } from "components/track-card";
+import { cachedSearchSpotify } from "service/spotify";
 
-type Props = {
-  results: SpotifySearchResults | null;
-};
-
-export const SearchResults = ({ results }: Props) => {
-  if (!results) return;
+export async function SearchResult({ query }: { query: string }) {
+  const results = await cachedSearchSpotify(query);
 
   return (
     <div className="grid grid-cols-3 gap-20">
@@ -40,4 +36,4 @@ export const SearchResults = ({ results }: Props) => {
       </div>
     </div>
   );
-};
+}

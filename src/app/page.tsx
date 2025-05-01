@@ -1,7 +1,9 @@
 import { FormSearch } from "components/form-search";
-import { cachedSearchSpotify } from "service/spotify";
-import { SearchResults } from "components/search-results";
+import { SearchResult } from "components/search-results";
 import { Header } from "components/header";
+import { Loader } from "components/loader";
+import * as React from "react";
+import { Suspense } from "react";
 
 interface Props {
   searchParams: Promise<{
@@ -10,16 +12,16 @@ interface Props {
 }
 export default async function Home({ searchParams }: Props) {
   const resolvedSearchParams = await searchParams;
-  const results = resolvedSearchParams?.q
-    ? await cachedSearchSpotify(resolvedSearchParams.q)
-    : null;
-  // console.log("results", results);
 
   return (
     <div className=" flex flex-col items-center justify-center mx-40">
       <Header />
       <FormSearch />
-      <SearchResults results={results} />
+      <Suspense key={resolvedSearchParams?.q} fallback={<Loader />}>
+        {resolvedSearchParams.q && (
+          <SearchResult query={resolvedSearchParams?.q} />
+        )}
+      </Suspense>
     </div>
   );
 }
